@@ -173,8 +173,8 @@ app.get("/", (req, res) => {
 });
 
 // TODO: Descomenta estas líneas después de crear las rutas
-// const authRoutes = require("./routes/auth.routes");
-// const itemsRoutes = require("./routes/items.routes");
+// const authRoutes = require("./routes/auth.routes.js");
+// const itemsRoutes = require("./routes/items.routes.js");
 // app.use("/api/auth", authRoutes);
 // app.use("/api/items", itemsRoutes);
 
@@ -338,8 +338,8 @@ app.get("/", (req, res) => {
 });
 
 // TODO: Descomenta después de crear las rutas
-// const authRoutes = require("./routes/auth.routes");
-// const itemsRoutes = require("./routes/items.routes");
+// const authRoutes = require("./routes/auth.routes.js");
+// const itemsRoutes = require("./routes/items.routes.js");
 // app.use("/api/auth", authRoutes);
 // app.use("/api/items", itemsRoutes);
 
@@ -520,7 +520,7 @@ const PORT = process.env.PORT || 3000;
 require("./db/init");
 
 // Importar las rutas de autenticación
-const authRoutes = require("./routes/auth.routes");
+const authRoutes = require("./routes/auth.routes.js");
 
 // ============================================================
 // MIDDLEWARES
@@ -537,13 +537,13 @@ app.get("/", (req, res) => {
 });
 
 // Registrar las rutas de autenticación bajo el prefijo /api/auth
-// Todas las rutas definidas en auth.routes.js estarán disponibles en:
+// Todas las rutas definidas en auth.routes.js.js estarán disponibles en:
 // - POST /api/auth/register
 // - POST /api/auth/login
 app.use("/api/auth", authRoutes);
 
-// TODO: Descomenta después de crear items.routes.js
-// const itemsRoutes = require("./routes/items.routes");
+// TODO: Descomenta después de crear items.routes.js.js
+// const itemsRoutes = require("./routes/items.routes.js");
 // app.use("/api/items", itemsRoutes);
 
 // ============================================================
@@ -575,7 +575,7 @@ Archivo: `src/middleware/auth.js`
 // jsonwebtoken: Librería para verificar tokens JWT
 const jwt = require("jsonwebtoken");
 
-// JWT_SECRET: Mismo secreto usado en auth.routes.js para firmar tokens
+// JWT_SECRET: Mismo secreto usado en auth.routes.js.js para firmar tokens
 const JWT_SECRET = process.env.JWT_SECRET || "dev_secret_super_inseguro";
 
 // ============================================================
@@ -725,9 +725,9 @@ const PORT = process.env.PORT || 3000;
 require("./db/init");
 
 // Rutas de autenticación
-const authRoutes = require("./routes/auth.routes");
+const authRoutes = require("./routes/auth.routes.js");
 // Rutas de items (protegidas)
-const itemsRoutes = require("./routes/items.routes");
+const itemsRoutes = require("./routes/items.routes.js");
 
 // ============================================================
 // MIDDLEWARES
