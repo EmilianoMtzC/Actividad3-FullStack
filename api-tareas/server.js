@@ -3,11 +3,16 @@
 require("dotenv").config();
 
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MIDDLEWARE ========================
-app.use(express.json());
+app.use(bodyParser.json());
+
+const authMiddleware = require("./src/middlewares/auth");
+const tareasRoutes = require("./src/routes/tareas.routes");
+const authRoutes = require("./src/routes/auth.routes");
 
 // RUTAS ========================
 app.get("/", (req, res) => {
@@ -23,9 +28,8 @@ app.get("/boom", async (req, res, next) => {
     }
 });
 
-const tareasRoutes = require("./routes/tareas.routes");
-app.use("/tareas", tareasRoutes);
-
+app.use(authRoutes);
+app.use("/tareas", authMiddleware, tareasRoutes);
 
 // MIDDLEWARES ========================
 app.use((req, res) => {
@@ -45,4 +49,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
-
