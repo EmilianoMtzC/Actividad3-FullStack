@@ -238,21 +238,78 @@ curl -X POST http://localhost:3000/tareas \
 
 ---
 
-## Imágenes (pendiente)
+## Capturas de Funcionamiento
 
-Coloca aquí capturas del funcionamiento (Thunder Client/Postman, consola, etc.).
+A continuación se muestran las capturas del funcionamiento de la API utilizando Thunder Client.
 
-Sugerencia de estructura (no obligatoria):
+---
 
-```
-imgs/
-  01-register.png
-  02-login.png
-  03-crud-tareas.png
-```
+### 1. Registro de Usuario (POST /auth/register)
 
-Y enlázalas así:
+Se realiza una petición `POST` al endpoint `/auth/register` enviando en el body un JSON con `username` y `password`. El servidor responde con un código `201 Created` y el mensaje `"Usuario registrado"`, confirmando que el usuario fue creado exitosamente y su contraseña hasheada almacenada en el archivo JSON.
 
-```md
-![Register](imgs/01-register.png)
-```
+![Registro de usuario](capturas/POST-register.png)
+
+---
+
+### 2. Login de Usuario (POST /auth/login)
+
+Se realiza una petición `POST` al endpoint `/auth/login` con las credenciales del usuario registrado. El servidor valida las credenciales contra el hash almacenado y responde con un código `200 OK` junto con un token JWT que será utilizado para autenticar futuras peticiones a rutas protegidas.
+
+![Login de usuario](capturas/GET-login.png)
+
+---
+
+### 3. Configuración del Token Bearer
+
+Después de obtener el token JWT del login, se configura en la pestaña "Auth" de Thunder Client seleccionando "Bearer Token" como tipo de autenticación. Este token se incluirá automáticamente en el header `Authorization` de las peticiones subsecuentes para acceder a rutas protegidas.
+
+![Configuración del token Bearer](capturas/GET-login-token.png)
+
+---
+
+### 4. Crear Tarea (POST /tareas)
+
+Se realiza una petición `POST` al endpoint `/tareas` enviando un JSON con `titulo` y `descripcion`. El servidor crea la tarea asignándole un `id` único (timestamp) y responde con un código `201 Created` devolviendo el objeto de la tarea recién creada con todos sus campos.
+
+![Crear tarea](capturas/POST-CrearTareas.png)
+
+---
+
+### 5. Obtener Tareas (GET /tareas)
+
+Se realiza una petición `GET` al endpoint `/tareas` para listar todas las tareas almacenadas. El servidor responde con un código `200 OK` y un array JSON conteniendo todas las tareas existentes, cada una con su `id`, `titulo` y `descripcion`.
+
+![Obtener tareas](capturas/GET-ObtenerTarea.png)
+
+---
+
+### 6. Modificar Tarea (PUT /tareas/:id)
+
+Se realiza una petición `PUT` al endpoint `/tareas/:id` (donde `:id` es el identificador de la tarea) enviando los campos a actualizar. El servidor busca la tarea por su ID, actualiza los campos proporcionados y responde con un código `200 OK` devolviendo la tarea con los datos modificados.
+
+![Modificar tarea](capturas/PUT-ModificarTarea.png)
+
+---
+
+### 7. Verificar Tarea Modificada (GET /tareas)
+
+Se realiza una petición `GET` al endpoint `/tareas` para confirmar que la modificación se aplicó correctamente. El servidor responde con el listado actualizado de tareas donde se puede observar que los campos `titulo` y `descripcion` de la tarea fueron actualizados exitosamente.
+
+![Verificar tarea modificada](capturas/GET-TareaModificada.png)
+
+---
+
+### 8. Eliminar Tarea (DELETE /tareas/:id)
+
+Se realiza una petición `DELETE` al endpoint `/tareas/:id` para eliminar una tarea específica. El servidor localiza la tarea por su ID, la elimina del archivo JSON y responde con un código `200 OK` junto con el mensaje `"Tarea eliminada"` confirmando la operación.
+
+![Eliminar tarea](capturas/DELET-BorrarTarea.png)
+
+---
+
+### 9. Verificar Tarea Eliminada (GET /tareas)
+
+Se realiza una petición `GET` al endpoint `/tareas` para confirmar que la tarea fue eliminada correctamente. El servidor responde con un array vacío `[]`, indicando que no existen tareas almacenadas y confirmando que la eliminación fue exitosa.
+
+![Verificar tarea eliminada](capturas/GET-TareaEliminada.png)
