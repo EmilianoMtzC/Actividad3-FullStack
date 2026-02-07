@@ -1,0 +1,16 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>./.idea
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision f35b2976b80750e3f50fe3e54964fdd65f0bf5d7)
++++ b/.gitignore	(date 1770218407572)
+@@ -1,1 +1,2 @@
+-./.idea
+\ No newline at end of file
++./.idea
++./api-tareas/node_modules
+\ No newline at end of file
